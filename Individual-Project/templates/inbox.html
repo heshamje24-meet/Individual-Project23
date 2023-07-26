@@ -26,7 +26,7 @@
           <!-- Add your user icon here -->
           <img src="https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" alt="User Icon">
           <!-- Add the email of the logged-in user here -->
-          <p>{{ email }}</p> <!-- Replace with the actual email of the logged-in user -->
+          <p>{{email}}</p> <!-- Replace with the actual email of the logged-in user -->
       </div>
   </div>
     <div class="cards">
@@ -47,12 +47,34 @@
     {% endif %}
       </div>
       <div class="card blue">
-          <p class="tip"></p>
-          <p class="second-text">Lorem Ipsum</p>
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>
+                    <strong>From:</strong> {{ message.sender_email }}<br>
+                    <strong>Subject:</strong> {{ message.subject }}<br>
+                    <strong>Body:</strong> {{ message.body }}<br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No messages found.</p>
+    {% endif %}
       </div>
       <div class="card green">
-          <p class="tip">Hover Me</p>
-          <p class="second-text">Lorem Ipsum</p>
+            {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>
+                    <strong>From:</strong> {{ message.sender_email }}<br>
+                    <strong>Subject:</strong> {{ message.subject }}<br>
+                    <strong>Body:</strong> {{ message.body }}<br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No messages found.</p>
+    {% endif %}
       </div>
   </div>
     <div class="wrapper">

@@ -10,12 +10,12 @@
 <body>
     <form class="form" action='/compose' method="post">
         <label for="email" class="lb">E-mail:</label>
-        <input name="email" id="email" type="email" class="infos">
+        <input name="email" id="email" type="email" class="infos" required>
         <label class="lb" for="nome">SUBJECT:</label>
-              <input name="subject" id="nome" type="text" class="infos">
+              <input name="subject" id="nome" type="text" class="infos" required>
         
               <label for="data" class="lb">BODY:</label>
-              <input name="body" id="data" type="text" maxlength="300" class="infos">
+              <input name="body" id="data" type="text" maxlength="300" class="infos" required>
         
               <button id="send" type="submit" onclick="">Send</button>
               <button id="limpar" type="reset">Clear </button>

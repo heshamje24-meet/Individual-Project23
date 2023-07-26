@@ -32,7 +32,7 @@ def signin():
             login_session['user'] = auth.sign_in_with_email_and_password(email, password)
             UID = login_session['user']['localId']
             
-            return redirect(url_for('inbox'))
+            return redirect(url_for('inbox',email))
         except Exception as e:
             error = "Authentication failed"
             print(e)
@@ -48,7 +48,7 @@ def signup():
             UID = login_session['user']['localId']
             user={'email':email}
             db.child('Users').child(UID).set(user)
-            return redirect(url_for('inbox'))
+            return redirect(url_for('inbox',email))
         except:
             error = "Authentication failed"
             return redirect(url_for('signup'))
@@ -56,16 +56,18 @@ def signup():
         return render_template("signup.html")
     
 def fetch_user_messages(uid):
-    messages = db.child("Users").child(uid).child('message').get().val()
-    user_messages = []
-    if messages:
-        for message_id, message_data in messages.items():
-            sender_uid = message_data['sender']
+    user_messages = db.child("Users").child(uid).child('message').get().val()
+    messages_with_sender_email = []
+    if user_messages:
+        for message_key, message_data in user_messages.items():
+            sender_uid = message_data.get('sender', '')
             sender_email = db.child("Users").child(sender_uid).child('email').get().val()
-            message_data['sender_email'] = sender_email
-            user_messages.append(message_data)
-    return user_messages
+            if sender_email:
+                message_data['sender_email'] = sender_email
+                messages_with_sender_email.append(message_data)
+    return messages_with_sender_email
 
+    
     
 
 @app.route('/inbox', methods=['GET', 'POST'])
@@ -104,13 +106,19 @@ def compose():
         try:
             db.child("Users").child(recipient_uid).child('message').push(letter)
             
-            return redirect(url_for("inbox"),letter)
+            return redirect(url_for("inbox"))
         except Exception as e:
             print(e)
             return redirect('compose')
     else:
 
         return render_template('compose.html')
+    
+@app.route('/signout')
+def signout():
+    login_session['user'] = None
+    auth.current_user = None
+    return redirect(url_for('signin'))
 
 # ... (your other routes and code)
 
