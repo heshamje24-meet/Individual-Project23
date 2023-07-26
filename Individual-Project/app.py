@@ -54,37 +54,29 @@ def signup():
             return redirect(url_for('signup'))
     else:
         return render_template("signup.html")
-@app.route('/inbox', methods=['GET','POST'])
+    
+def fetch_user_messages(uid):
+    messages = db.child("Users").child(uid).child('message').get().val()
+    user_messages = []
+    if messages:
+        for message_id, message_data in messages.items():
+            sender_uid = message_data['sender']
+            sender_email = db.child("Users").child(sender_uid).child('email').get().val()
+            message_data['sender_email'] = sender_email
+            user_messages.append(message_data)
+    return user_messages
+
+    
+
+@app.route('/inbox', methods=['GET', 'POST'])
 def inbox():
-    if request.method=='POST':
+    if request.method == 'POST':
         return render_template('compose.html')
     else:
-        return render_template('inbox.html')
-# def email_to_uid(to):
-#     users=[db.child("Users").get().val()]
-#     for user in users:
-#         if users[user]['email']==to:
-#             return user
-#     return None
-    
-    
-# @app.route('/compose',methods=['GET','POST'])
-# def compsoe():
-#     if request.method=='POST':
-#          rec=request.form['email']
-#          subject=request.form['subject']
-#          body=request.form['body']
-#          UID = login_session['user']['localId']
-#          letter={'sender':UID,'to':rec,"subject":subject,"body":body}
-#          try:
-#             # db.child("Messages").push(letter)
-#             db.child("Users").child(email_to_uid(letter['to'])).push(letter)
-#             return render_template("inbox.html")
-#          except:
-#              return redirect('compose')
-#     else:
-#         return render_template('compose.html')
-# ... (your imports and Firebase configuration code)
+        UID = login_session['user']['localId']
+        user_messages = fetch_user_messages(UID)
+        return render_template('inbox.html', messages=user_messages)
+
 
 # Your routes and other code above
 
@@ -110,12 +102,14 @@ def compose():
 
         letter = {'sender': sender_uid, 'to': rec, "subject": subject, "body": body}
         try:
-            db.child("Users").child(recipient_uid).child('email').child('message').push(letter)
-            return redirect(url_for("inbox"))
+            db.child("Users").child(recipient_uid).child('message').push(letter)
+            
+            return redirect(url_for("inbox"),letter)
         except Exception as e:
             print(e)
             return redirect('compose')
     else:
+
         return render_template('compose.html')
 
 # ... (your other routes and code)

@@ -32,10 +32,22 @@
     <div class="cards">
       <div class="card red">
           <p class="tip"></p>
-          <p class="second-text">Lorem Ipsum</p>
+          {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>
+                    <strong>From:</strong> {{ message.sender_email }}<br>
+                    <strong>Subject:</strong> {{ message.subject }}<br>
+                    <strong>Body:</strong> {{ message.body }}<br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No messages found.</p>
+    {% endif %}
       </div>
       <div class="card blue">
-          <p class="tip">Hover Me</p>
+          <p class="tip"></p>
           <p class="second-text">Lorem Ipsum</p>
       </div>
       <div class="card green">
