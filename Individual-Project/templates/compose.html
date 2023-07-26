@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/comp.css') }}">
+
+    <title>Document</title>
+</head>
+<body>
+    <form class="form" action='/compose' method="post">
+        <label for="email" class="lb">E-mail:</label>
+        <input name="email" id="email" type="email" class="infos">
+        <label class="lb" for="nome">SUBJECT:</label>
+              <input name="subject" id="nome" type="text" class="infos">
+        
+              <label for="data" class="lb">BODY:</label>
+              <input name="body" id="data" type="text" maxlength="300" class="infos">
+        
+              <button id="send" type="submit" onclick="">Send</button>
+              <button id="limpar" type="reset">Clear </button>
+            </form>
+</body>
+<script>
+
+    function goback()
+    {
+        window.location.href = "inbox.html";
+
+    }
+</script>
+</html>
+

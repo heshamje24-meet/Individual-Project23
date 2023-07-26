@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/inbox.css') }}">
+</head>
+<body>
+    
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="top-right">
+      <div class="search-bar">
+          <!-- Add your search bar here -->
+          <input placeholder="Search The Matrix">
+      </div>
+      <div class="user-info">
+          <!-- Add your user icon here -->
+          <img src="https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" alt="User Icon">
+          <!-- Add the email of the logged-in user here -->
+          <p>{{ email }}</p> <!-- Replace with the actual email of the logged-in user -->
+      </div>
+  </div>
+    <div class="cards">
+      <div class="card red">
+          <p class="tip"></p>
+          <p class="second-text">Lorem Ipsum</p>
+      </div>
+      <div class="card blue">
+          <p class="tip">Hover Me</p>
+          <p class="second-text">Lorem Ipsum</p>
+      </div>
+      <div class="card green">
+          <p class="tip">Hover Me</p>
+          <p class="second-text">Lorem Ipsum</p>
+      </div>
+  </div>
+    <div class="wrapper">
+        <input type="checkbox" id="toogle" class="hidden-trigger">
+        <label for="toogle" class="circle">
+      <svg class="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48" xml:space="preserve" version="1.1" viewBox="0 0 48 48">
+          <image width="48" height="48" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAQAAAD9CzEMAAAAbElEQVR4Ae3XwQnFQAiE4eVVsGAP1mkPFjwvQvYSWCQYCYGZv4Dv5MGB5ghcIiDQI+kCftCzNsAR8y5gYu2rwCBAgMBTgEC3rek2yQEtAZoDjso8AyaKexmIDJUZD40AAQIE0gwx449GgMC9/t0b7GTsa7J+AAAAAElFTkSuQmCC"></image>
+        </svg>
+        </label>
+        
+         
+        <div class="subs">
+          <a href="/compose">
+            <button class="sub-circle" type="submit" >
+              <input value="1" name="sub-circle" type="submit" id="sub1" class="hidden-sub-trigger">
+                <label for="sub1">.</label>
+            </button> 
+            </a>
+        
+          
+        <a href="/signup">
+          <button class="sub-circle">
+            <input value="2" name="sub-circle" type="submit" id="sub2" class="hidden-sub-trigger">
+            <label for="sub2"></label>
+          </button>
+        </a>
+          <a href='/sent'>
+          <button class="sub-circle">
+            <input value="1" name="sub-circle" type="submit" id="sub3" class="hidden-sub-trigger">
+            <label for="sub3"></label>
+          </button>
+          </a>
+          <a href="/signout">
+          <button class="sub-circle">
+            <input value="1" name="sub-circle" type="submit" id="sub4" class="hidden-sub-trigger">
+            <label for="sub4"></label>
+          </button>
+          </a>
+          <a href="/signup">
+          <button class="sub-circle">
+            <input value="1" name="sub-circle" type="submit" id="sub5" class="hidden-sub-trigger">
+            <label for="sub5"></label>
+          </button>
+          </a>
+          <a href="/">
+          <button class="sub-circle">
+            <input value="1" name="sub-circle" type="submit" id="sub6" class="hidden-sub-trigger">
+            <label for="sub6"></label>
+          </button>
+          </a>
+          <a href="/signin">
+          <button class="sub-circle">
+            <input value="1" name="sub-circle" type="submit" id="sub7" class="hidden-sub-trigger">
+            <label for="sub7"></label>
+          </button>
+          </a>
+          <a href="/compose">
+          <button class="sub-circle">
+            <input value="1" name="sub-circle" type="submit" id="sub8" class="hidden-sub-trigger">
+            <label for="sub8"></label>
+          </button>
+          </a>
+         </div>
+      </div> 
+     
+  </body>
+<script>
+
+// function openIframe(pageURL) {
+//   var iframe = document.getElementById('iframeContent');
+//   iframe.src = pageURL;
+// }
+</script>
+
+</body>
+</html>
