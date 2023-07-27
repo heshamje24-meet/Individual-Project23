@@ -32,8 +32,9 @@ def signin():
             login_session['user'] = auth.sign_in_with_email_and_password(email, password)
             UID = login_session['user']['localId']
             
-            return redirect(url_for('inbox',email))
+            return redirect(url_for('inbox'))
         except Exception as e:
+            print(e)
             error = "Authentication failed"
             print(e)
     return render_template("signin.html")
@@ -48,8 +49,9 @@ def signup():
             UID = login_session['user']['localId']
             user={'email':email}
             db.child('Users').child(UID).set(user)
-            return redirect(url_for('inbox',email))
-        except:
+            return redirect(url_for('inbox'))
+        except Exception as e:
+            print(e)
             error = "Authentication failed"
             return redirect(url_for('signup'))
     else:
